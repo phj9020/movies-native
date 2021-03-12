@@ -4,17 +4,16 @@ import AppLoading from 'expo-app-loading';
 import {Text, Image} from 'react-native';
 import { Asset } from 'expo-asset';
 
-const cacheImages = (images) => 
+const cacheImages = images => 
   images.map(image => {
-    if(typeof image === 'string') {
-      // 이미지가 문자열이면 이미지를 미리 가져오겠다
-      return Image.prefetch
+    // 이미지가 문자열이면 이미지를 미리 가져오겠다
+    if(typeof image === "string") {
+      return Image.prefetch(image);
     } else {
       // 그게 아니라면 module 을 가져오겠다  여기서 모듈은 require("path")를 말함 
-      return Asset.fromModule(module).downloadAsync();
+      return Asset.fromModule(image).downloadAsync();
     }
   })
-
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -30,7 +29,7 @@ export default function App() {
   const onFinish = () => setIsReady(true);
 
   return (
-    isReady ?  <Text>hello</Text> : <AppLoading startAsync={loadAssets} onFinish={onFinish} onError={console.error} /> 
+    isReady ?  <Text>hellosdsdsd</Text> : <AppLoading startAsync={loadAssets} onFinish={onFinish} onError={console.error} /> 
   )
 }
 
