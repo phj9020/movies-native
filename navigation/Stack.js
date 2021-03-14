@@ -9,7 +9,6 @@ const StackNavigator = () => {
     
     return(
         <Stack.Navigator
-        
         screenOptions={{
             headerStyle: {backgroundColor: "black", borderBottomColor: "black", shadowColor: "black"}, 
             headerTintColor: "white",
