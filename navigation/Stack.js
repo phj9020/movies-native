@@ -8,8 +8,15 @@ const Stack = createStackNavigator();
 const StackNavigator = () => {
     
     return(
-        <Stack.Navigator>
-            <Stack.Screen name="Tabs12" component={Tabs} />
+        <Stack.Navigator
+        
+        screenOptions={{
+            headerStyle: {backgroundColor: "black", borderBottomColor: "black", shadowColor: "black"}, 
+            headerTintColor: "white",
+            headerBackTitleVisible: false,
+            headerTitleAlign: "center"
+            }}>
+            <Stack.Screen name="Home" component={Tabs} />
             <Stack.Screen name="Detail" component={Detail} />
         </Stack.Navigator>
 
