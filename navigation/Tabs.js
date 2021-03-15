@@ -30,7 +30,7 @@ function Tabs({ navigation, route}) {
                     iconName += "tv"
                 } else if (route.name === "Search"){
                     iconName += "search"
-                } else if (route.name === "Favs") {
+                } else if (route.name === "Discovery") {
                     iconName += "heart"
                 }
                 return <Ionicons name={iconName} color={focused ? "white" : "grey"} size={26} />
@@ -42,7 +42,7 @@ function Tabs({ navigation, route}) {
             <Tab.Screen name="Movies" component={Movies}  />
             <Tab.Screen name="TV" component={TV} />
             <Tab.Screen name="Search" component={Search} />
-            <Tab.Screen name="Favs" component={Favs} />
+            <Tab.Screen name="Discovery" component={Favs} />
         </Tab.Navigator>
     )
 }

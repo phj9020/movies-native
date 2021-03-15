@@ -9,7 +9,9 @@ function TV() {
         thisWeek:[],
         thisWeekError: null,
         topRated:[],
-        topRatedError: null
+        topRatedError: null,
+        popular: [],
+        popularError: null
     });
     console.log(tvs);
 
@@ -17,13 +19,17 @@ function TV() {
         const [today, todayError] = await tvApi.today();
         const [thisWeek, thisWeekError] = await tvApi.thisWeek();
         const [topRated, topRatedError] = await tvApi.topRated();
+        const [popular, popularError] = await tvApi.popular();
+        
         setTvs({
             today: today,
             todayError: todayError,
             thisWeek: thisWeek,
             thisWeekError: thisWeekError,
             topRated: topRated,
-            topRatedError: topRatedError
+            topRatedError: topRatedError,
+            popular: popular,
+            popularError: popularError
         })
     }
 
