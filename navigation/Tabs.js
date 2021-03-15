@@ -23,7 +23,7 @@ function Tabs({ navigation, route}) {
             tabBarIcon: ({focused}) => {
                 //platform
                 let iconName = Platform.OS === "ios" ? "ios-" : "md-"
-                console.log(route)
+                
                 if(route.name === "Movies") {
                     iconName += "film"
                 } else if (route.name === "TV") {

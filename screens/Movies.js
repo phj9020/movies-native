@@ -1,13 +1,45 @@
-import React from 'react';
-import {View, Text, Button} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import { movieApi } from '../API';
 
-function Movies({navigation}) {
+function Movies() {
+    const [movies, setMovies] = useState({
+        nowPlaying:[],
+        nowPlayingError:null,
+        popular:[],
+        popularError: null,
+        upcoming:[],
+        upcomingError: null
+    });
+    console.log(movies)
+    const getData = async()=> {
+        const [nowPlaying, nowPlayingError] = await movieApi.nowPlaying();
+        const [popular, popularError] = await movieApi.popular();
+        const [upcoming, upcomingError] = await movieApi.upcoming();
+        setMovies({
+            nowPlaying:nowPlaying,
+            nowPlayingError:nowPlayingError,
+            popular:popular,
+            popularError:popularError,
+            upcoming: upcoming,
+            upcomingError: upcomingError
+        })
+    }
+
+    useEffect(()=> {
+        getData();
+    }, [])
+
     return (
         <View style={{ flex:1, backgroundColor: "black"}} >
-            <Text>Movies</Text>
-            <Button title="Movie" onPress={()=> navigation.navigate("Detail")} />
+            <Text style={styles.text}>{movies.nowPlaying.map(item => item.title)}</Text>
         </View>
     )
 }
 
+const styles = StyleSheet.create({
+    text: {
+        color: "white"
+    }
+})
 export default Movies;
