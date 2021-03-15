@@ -42,6 +42,7 @@ const Votes = styled.Text`
     color: rgb(220,220,220);
     margin-bottom: 5px;
     font-size: 12px;
+    font-weight: 500;
 `
 
 const Overview = styled.Text`
@@ -69,8 +70,8 @@ function Slide({id, title, backgroundImage, votes, overview, poster}) {
             <Content>
                 <Poster url={apiImageFormat(poster)} />
                 <Data>
-                    <Title>{title.slice(0,30)}</Title>
-                    <Votes>⭐ {votes}/10</Votes>
+                    <Title>{title.length > 40 ? `${title.slice(0,40)}...` : title}</Title>
+                    <Votes>⭐{votes} / 10</Votes>
                     <Overview>{overview.slice(0, 110)}...</Overview>
                     <TouchableOpacity>
                         <Button>

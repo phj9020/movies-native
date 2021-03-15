@@ -13,10 +13,7 @@ const makeRequest = (path, params) => axios.get(`https://api.themoviedb.org/3${p
 
 const getAnything = async(path, params = {}) => {
     try {
-        const {
-            data: {results},
-            data
-        } = await makeRequest(path, params);
+        const { data: {results}, data} = await makeRequest(path, params);
         return [results || data, null]
     } catch(error) {
         return [null, error]
