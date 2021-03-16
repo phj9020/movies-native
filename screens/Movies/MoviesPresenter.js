@@ -1,26 +1,33 @@
 import React from "react";
-import { ActivityIndicator, Dimensions, ScrollView } from "react-native";
+import { ActivityIndicator, Dimensions, ScrollView, View } from "react-native";
 import Swiper from "react-native-web-swiper";
 import styled from "styled-components/native";
 import Slide from "../../components/Movies/Slide";
 import Title from "../../components/Title";
 import Horizontal from "../../components/Horizontal";
+import Vertical from "../../components/Vertical";
 
 // screen 치수를 가져다주는 react-native package : Dimensions
-const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
+const { height: HEIGHT } = Dimensions.get("window");
 
 const SliderContainer = styled.View`
-  width: ${WIDTH}px;
+  width: 100%;
   height: ${HEIGHT / 3}px;
   margin-bottom: 20px;
 `;
 
-function MoviesPresenter({ loading, nowPlaying, popular }) {
+const Container = styled.View``
+
+const UpcomingContainer = styled.View`
+  margin-top:20px;
+`
+
+function MoviesPresenter({ loading, nowPlaying, popular, upcoming }) {
   return (
     <ScrollView
       style={{ backgroundColor: "black" }}
       contentContainerStyle={{
-        flex: 1,
+        flexGrow: 1,
         justifyContent: loading ? "center" : "flex-start",
       }}
     >
@@ -43,22 +50,38 @@ function MoviesPresenter({ loading, nowPlaying, popular }) {
               ))}
             </Swiper>
           </SliderContainer>
-          <Title title={"Popular Movies"} />
-          <ScrollView
-            style={{ marginTop: 20 }}
-            contentContainerStyle={{ paddingLeft: 30 }}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          >
-            {popular.map((item) => (
-              <Horizontal
-                key={item.id}
-                poster={item.poster_path}
-                title={item.original_title}
-                vote={item.vote_average}
-              />
-            ))}
-          </ScrollView>
+          <Container>
+            <Title title={"Popular Movies"} />
+            <ScrollView
+              style={{ marginTop: 20, marginBottom: 40 }}
+              contentContainerStyle={{ paddingLeft: 30 }}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            >
+              {popular.map((item) => (
+                <Horizontal
+                  id={item.id}
+                  key={item.id}
+                  poster={item.poster_path}
+                  title={item.original_title}
+                  vote={item.vote_average}
+                />
+              ))}
+            </ScrollView>
+            <Title title={"Coming Soon"} />
+            <UpcomingContainer>
+              {upcoming.map((item) => (
+                <Vertical
+                  id={item.id}
+                  key={item.id}
+                  poster={item.poster_path}
+                  title={item.original_title}
+                  releaseDate={item.release_date}
+                  overview={item.overview}
+                />
+              ))}
+            </UpcomingContainer>
+          </Container>
         </>
       )}
     </ScrollView>
