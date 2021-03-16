@@ -3,7 +3,8 @@ import styled from 'styled-components/native'
 import PropTypes from 'prop-types'; 
 import { apiImageFormat } from '../../API';
 import Poster from '../Poster';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
+import Vote from '../Vote';
 
 
 const Container = styled.View`
@@ -38,11 +39,8 @@ const Title = styled.Text`
     margin-bottom: 5px;
 `
 
-const Votes = styled.Text`
-    color: rgb(220,220,220);
+const VotesContainer = styled.View`
     margin-bottom: 5px;
-    font-size: 12px;
-    font-weight: 500;
 `
 
 const Overview = styled.Text`
@@ -63,7 +61,7 @@ const ButtonText= styled.Text`
 `
 
 function Slide({id, title, backgroundImage, votes, overview, poster}) {
-    apiImageFormat
+    
     return (
         <Container key={id}>
             <BgImage resizeMode='cover' source={{uri: apiImageFormat(backgroundImage) }} />
@@ -71,7 +69,9 @@ function Slide({id, title, backgroundImage, votes, overview, poster}) {
                 <Poster url={apiImageFormat(poster)} />
                 <Data>
                     <Title>{title.length > 40 ? `${title.slice(0,40)}...` : title}</Title>
-                    <Votes>⭐{votes} / 10</Votes>
+                    <VotesContainer>
+                        <Vote votes={votes} />
+                    </VotesContainer>
                     <Overview>{overview.slice(0, 110)}...</Overview>
                     <TouchableOpacity>
                         <Button>
