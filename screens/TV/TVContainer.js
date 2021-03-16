@@ -1,9 +1,11 @@
 import React,{useState, useEffect} from 'react'
 import {View, Text} from 'react-native';
-import { tvApi } from '../API';
+import { tvApi } from '../../API';
+import TVPresenter from "./TVPresenter";
 
 function TV() {
     const [tvs, setTvs]= useState({
+        loading: true,
         today: [],
         todayError: null,
         thisWeek:[],
@@ -22,6 +24,7 @@ function TV() {
         const [popular, popularError] = await tvApi.popular();
         
         setTvs({
+            loading: false,
             today: today,
             todayError: todayError,
             thisWeek: thisWeek,
@@ -38,9 +41,7 @@ function TV() {
     },[])
 
     return (
-        <View style={{flex:1, backgroundColor:"black"}}>
-            <Text>TV</Text>
-        </View>
+        <TVPresenter {...tvs} />
     )
 }
 

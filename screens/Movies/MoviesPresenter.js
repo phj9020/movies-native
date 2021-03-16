@@ -1,11 +1,13 @@
 import React from "react";
-import { ActivityIndicator, Dimensions, ScrollView, View } from "react-native";
+import {Dimensions } from "react-native";
 import Swiper from "react-native-web-swiper";
 import styled from "styled-components/native";
 import Slide from "../../components/Movies/Slide";
 import Title from "../../components/Title";
-import Horizontal from "../../components/Horizontal";
 import Vertical from "../../components/Vertical";
+import ScrollContainer from "../../components/ScrollContainer";
+import HorizontalSlider from "../../components/HorizontalSlider";
+import Horizontal from "../../components/Horizontal";
 
 // screen 치수를 가져다주는 react-native package : Dimensions
 const { height: HEIGHT } = Dimensions.get("window");
@@ -24,17 +26,8 @@ const UpcomingContainer = styled.View`
 
 function MoviesPresenter({ loading, nowPlaying, popular, upcoming }) {
   return (
-    <ScrollView
-      style={{ backgroundColor: "black" }}
-      contentContainerStyle={{
-        flexGrow: 1,
-        justifyContent: loading ? "center" : "flex-start",
-      }}
-    >
-      {loading ? (
-        <ActivityIndicator color="#0000ff" size="large" />
-      ) : (
-        <>
+    <ScrollContainer loading={loading}>
+       <>
           <SliderContainer>
             <Swiper controlsEnabled={false} loop={true} timeout={3}>
               {nowPlaying.map((item) => (
@@ -51,23 +44,17 @@ function MoviesPresenter({ loading, nowPlaying, popular, upcoming }) {
             </Swiper>
           </SliderContainer>
           <Container>
-            <Title title={"Popular Movies"} />
-            <ScrollView
-              style={{ marginTop: 20, marginBottom: 40 }}
-              contentContainerStyle={{ paddingLeft: 30 }}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            >
+            <HorizontalSlider title={"Popular Movies"}>
               {popular.map((item) => (
-                <Horizontal
-                  id={item.id}
-                  key={item.id}
-                  poster={item.poster_path}
-                  title={item.original_title}
-                  vote={item.vote_average}
-                />
-              ))}
-            </ScrollView>
+                  <Horizontal
+                    id={item.id}
+                    key={item.id}
+                    poster={item.poster_path}
+                    title={item.original_title}
+                    vote={item.vote_average}
+                  />
+                ))}
+            </HorizontalSlider>
             <Title title={"Coming Soon"} />
             <UpcomingContainer>
               {upcoming.map((item) => (
@@ -83,8 +70,7 @@ function MoviesPresenter({ loading, nowPlaying, popular, upcoming }) {
             </UpcomingContainer>
           </Container>
         </>
-      )}
-    </ScrollView>
+    </ScrollContainer>
   );
 }
 

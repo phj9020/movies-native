@@ -11,7 +11,7 @@ const Votes = styled.Text`
 function Vote({votes}) {
     return (
         <Votes>
-            ⭐{votes} / 10
+            ⭐ {votes}/10
         </Votes>
     )
 }
