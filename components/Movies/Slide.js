@@ -5,6 +5,7 @@ import Poster from '../Poster';
 import { TouchableOpacity } from 'react-native';
 import Vote from '../Vote';
 import { trimText } from '../../utils';
+import { apiImageFormat } from '../../API';
 
 
 const Container = styled.View`
@@ -61,10 +62,9 @@ const ButtonText= styled.Text`
 `
 
 function Slide({id, title, backgroundImage, votes, overview, poster}) {
-    
     return (
         <Container key={id}>
-            <BgImage resizeMode='cover' source={{uri: backgroundImage }} />
+            <BgImage resizeMode='cover' source={{uri: apiImageFormat(backgroundImage) }} />
             <Content>
                 <Poster url={poster} />
                 <Data>

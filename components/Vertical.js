@@ -39,7 +39,7 @@ function Vertical({id, poster, title, releaseDate, overview}) {
                 <Poster url={poster} />
                 <Data>
                         <Title>{trimText(title, 30)}</Title>
-                        {releaseDate ? <ReleaseDate>개봉 예정일: {formatDate(releaseDate)}</ReleaseDate> : null}
+                        {releaseDate ? <ReleaseDate>개봉일: {formatDate(releaseDate)}</ReleaseDate> : null}
                         <Overview>{trimText(overview, 150)}</Overview>
                 </Data>
             </Container>
