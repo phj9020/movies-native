@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native'
 import PropTypes from 'prop-types'; 
-import { apiImageFormat } from '../../API';
 import Poster from '../Poster';
 import { TouchableOpacity } from 'react-native';
 import Vote from '../Vote';
+import { trimText } from '../../utils';
 
 
 const Container = styled.View`
@@ -64,15 +64,15 @@ function Slide({id, title, backgroundImage, votes, overview, poster}) {
     
     return (
         <Container key={id}>
-            <BgImage resizeMode='cover' source={{uri: apiImageFormat(backgroundImage) }} />
+            <BgImage resizeMode='cover' source={{uri: backgroundImage }} />
             <Content>
-                <Poster url={apiImageFormat(poster)} />
+                <Poster url={poster} />
                 <Data>
-                    <Title>{title.length > 40 ? `${title.slice(0,40)}...` : title}</Title>
+                    <Title>{trimText(title, 40)}</Title>
                     <VotesContainer>
                         <Vote votes={votes} />
                     </VotesContainer>
-                    <Overview>{overview.slice(0, 110)}...</Overview>
+                    <Overview>{trimText(overview, 110)}</Overview>
                     <TouchableOpacity>
                         <Button>
                             <ButtonText>View Details</ButtonText>
@@ -89,7 +89,8 @@ Slide.propTypes = {
     title: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired
+    overview: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired
 }
 
 export default Slide;

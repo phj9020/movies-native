@@ -1,15 +1,14 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import { apiImageFormat } from '../API';
 import Poster from './Poster';
 import Vote from './Vote';
-import { TouchableOpacity } from 'react-native';
+import { trimText } from '../utils';
 
 const Container = styled.View`
     align-items: center;
     margin-right: 15px;
-    
 `
 
 
@@ -20,12 +19,12 @@ const Title = styled.Text`
 `
 
 
-function Horizontal({poster, title, vote}) {
+function Horizontal({id, poster, title, vote}) {
     return (
         <TouchableOpacity>
-            <Container>
-                <Poster url={apiImageFormat(poster)} />
-                <Title>{title.length > 10 ? `${title.slice(0,10)}...` : title}</Title>
+            <Container id={id}>
+                <Poster url={poster} />
+                <Title>{trimText(title, 10)}</Title>
                 <Vote votes={vote} />
             </Container>
         </TouchableOpacity>
@@ -33,6 +32,7 @@ function Horizontal({poster, title, vote}) {
 }
 
 Horizontal.propTypes = {
+    id: PropTypes.number.isRequired,
     poster: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     vote: PropTypes.number.isRequired,
