@@ -35,7 +35,9 @@ function MoviesPresenter({ refreshFn, loading, nowPlaying, popular, upcoming }) 
                     key={item.id}
                     poster={item.poster_path}
                     title={item.original_title}
-                    vote={item.vote_average}
+                    votes={item.vote_average}
+                    backgroundImage={item.backdrop_path}
+                    overview={item.overview}
                   />
                 ))}
             </HorizontalSlider>
@@ -48,6 +50,8 @@ function MoviesPresenter({ refreshFn, loading, nowPlaying, popular, upcoming }) 
                   title={item.original_title}
                   releaseDate={item.release_date}
                   overview={item.overview}
+                  votes={item.vote_average}
+                  backgroundImage={item.backdrop_path}
                 />
               ))}
             </List>

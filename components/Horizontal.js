@@ -20,11 +20,11 @@ const Title = styled.Text`
 `
 
 
-function Horizontal({id, poster, title, vote}) {
+function Horizontal({id, poster, title, votes, backgroundImage, overview}) {
     const navigation = useNavigation();
 
     const goToDetail = () => {
-        navigation.navigate("Detail", {id, poster, title, vote})
+        navigation.navigate("Detail", {id, poster, title, votes, backgroundImage, overview})
     }
 
     return (
@@ -32,7 +32,7 @@ function Horizontal({id, poster, title, vote}) {
             <Container id={id}>
                 <Poster url={poster} />
                 <Title>{trimText(title, 10)}</Title>
-                <Vote votes={vote} />
+                <Vote votes={votes} />
             </Container>
         </TouchableOpacity>
     )
@@ -42,7 +42,9 @@ Horizontal.propTypes = {
     id: PropTypes.number.isRequired,
     poster: PropTypes.string,
     title: PropTypes.string.isRequired,
-    vote: PropTypes.number.isRequired,
+    votes: PropTypes.number.isRequired,
+    backgroundImage: PropTypes.string,
+    overview: PropTypes.string
 }
 
 export default Horizontal;

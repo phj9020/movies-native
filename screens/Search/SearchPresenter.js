@@ -22,7 +22,7 @@ function SearchPresenter({keyword, onChange, onSubmit, movies, shows }) {
               id={movie.id}
               poster={movie.poster_path || movie.backdrop_path}
               title={movie.title}
-              vote={movie.vote_average}
+              votes={movie.vote_average}
             />
           ))}
         </HorizontalSlider>
@@ -36,7 +36,7 @@ function SearchPresenter({keyword, onChange, onSubmit, movies, shows }) {
               id={show.id}
               poster={show.poster_path || show.backdrop_path}
               title={show.name}
-              vote={show.vote_average}
+              votes={show.vote_average}
             />
           ))}
         </HorizontalSlider>

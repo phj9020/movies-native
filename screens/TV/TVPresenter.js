@@ -25,7 +25,9 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
               key={show.id}
               poster={show.poster_path}
               title={show.name}
-              vote={show.vote_average}
+              votes={show.vote_average}
+              backgroundImage={show.backdrop_path}
+              overview={show.overview}
             />
           ))}
         </HorizontalSlider>
@@ -49,7 +51,9 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
               key={show.id}
               poster={show.poster_path}
               title={show.name}
-              vote={show.vote_average}
+              votes={show.vote_average}
+              backgroundImage={show.backdrop_path}
+              overview={show.overview}
             />
           ))}
         </HorizontalSlider>
@@ -62,6 +66,8 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
                 title={show.name}
                 releaseDate={show.first_air_date}
                 overview={show.overview}
+                votes={show.vote_average}
+                backgroundImage={show.backdrop_path}
             />
           ))}
         </List>
