@@ -1,10 +1,15 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-function Detail() {
+function Detail({navigation, route: {params : {id, poster, title}}} ) {
+
+    // set Detail Screen Name to clicked title 
+    navigation.setOptions({title: title});
+
+    
     return (
         <View>
-            <Text>Detail</Text> 
+            <Text>{id}</Text> 
         </View>
     )
 }

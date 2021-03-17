@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Poster from './Poster';
 import Vote from './Vote';
 import { trimText } from '../utils';
+import { useNavigation } from '@react-navigation/native';
 
 const Container = styled.View`
     align-items: center;
@@ -20,8 +21,14 @@ const Title = styled.Text`
 
 
 function Horizontal({id, poster, title, vote}) {
+    const navigation = useNavigation();
+
+    const goToDetail = () => {
+        navigation.navigate("Detail", {id, poster, title, vote})
+    }
+
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goToDetail}>
             <Container id={id}>
                 <Poster url={poster} />
                 <Title>{trimText(title, 10)}</Title>

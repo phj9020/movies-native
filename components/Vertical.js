@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Poster from './Poster';
 import { formatDate, trimText } from '../utils';
 import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Container = styled.View`
     padding: 0px 30px;
@@ -33,8 +34,14 @@ const Overview = styled.Text`
 `
 
 function Vertical({id, poster, title, releaseDate, overview}) {
+    const navigation = useNavigation();
+
+    const goToDetail = () => {
+        navigation.navigate("Detail", {id, poster, title, releaseDate, overview});
+    }
+
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goToDetail}>
             <Container id={id}>
                 <Poster url={poster} />
                 <Data>
