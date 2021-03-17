@@ -41,7 +41,7 @@ function TV() {
     },[])
 
     return (
-        <TVPresenter {...tvs} />
+        <TVPresenter {...tvs} refreshFn={getData} />
     )
 }
 

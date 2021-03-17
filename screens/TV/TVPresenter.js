@@ -10,21 +10,13 @@ import ScrollContainer from "../../components/ScrollContainer";
 import SliderContainer from "../../components/SliderContainer";
 import Vertical from "../../components/Vertical";
 
-// const { height: HEIGHT } = Dimensions.get("window");
-
 const Container = styled.View`
   margin-top: 30px;
 `;
 
-// const SliderContainer = styled.View`
-//   width: 100%;
-//   height: ${HEIGHT / 3}px;
-//   margin-bottom: 20px;
-// `;
-
-function TVPresenter({ loading, popular, topRated, today, thisWeek }) {
+function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) {
   return (
-    <ScrollContainer loading={loading}>
+    <ScrollContainer loading={loading} refreshFn={refreshFn} >
       <Container>
         <HorizontalSlider title={"Popular Shows"}>
           {popular.map((show) => (

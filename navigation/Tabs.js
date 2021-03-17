@@ -39,8 +39,8 @@ function Tabs({ navigation, route}) {
             showLabel: false, 
             style:{backgroundColor:"black", borderTopColor: "black"}
             }}>
-            <Tab.Screen name="TV" component={TV} />
             <Tab.Screen name="Movies" component={Movies}  />
+            <Tab.Screen name="TV" component={TV} />
             <Tab.Screen name="Search" component={Search} />
             <Tab.Screen name="Discovery" component={Favs} />
         </Tab.Navigator>

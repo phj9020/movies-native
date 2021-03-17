@@ -10,9 +10,9 @@ import SliderContainer from "../../components/SliderContainer";
 
 const Container = styled.View``
 
-function MoviesPresenter({ loading, nowPlaying, popular, upcoming }) {
+function MoviesPresenter({ refreshFn, loading, nowPlaying, popular, upcoming }) {
   return (
-    <ScrollContainer loading={loading}>
+    <ScrollContainer loading={loading} refreshFn={refreshFn} >
       <>
           <SliderContainer>
               {nowPlaying.map((item) => (

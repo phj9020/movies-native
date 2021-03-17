@@ -33,7 +33,7 @@ function Horizontal({id, poster, title, vote}) {
 
 Horizontal.propTypes = {
     id: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
+    poster: PropTypes.string,
     title: PropTypes.string.isRequired,
     vote: PropTypes.number.isRequired,
 }
