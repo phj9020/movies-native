@@ -8,6 +8,8 @@ import ScrollContainer from '../../components/ScrollContainer';
 import Vote from '../../components/Vote';
 import { formatDate } from '../../utils';
 import HorizontalSlider from "../../components/HorizontalSlider";
+import Link from '../../components/Detail/Link';
+
 
 const Header = styled.View`
     height: ${Dimensions.get("window").height / 3}px;
@@ -46,10 +48,10 @@ const Data = styled.View`
 
 const DataName = styled.Text`
     margin-top: 20px;
-    color: white;
+    color: #ec4d37;
     margin-bottom: 20px;
     font-size: 18px;
-    font-weight:800;
+    font-weight: bold;
 `
 
 const DataValue = styled.Text`
@@ -60,8 +62,8 @@ const DataValue = styled.Text`
 `
 
 
-function Detail({loading, result}) {
-
+function Detail({loading, result, openBrowser}) {
+    
     return (
         <ScrollContainer loading={false}>
             <>
@@ -81,7 +83,7 @@ function Detail({loading, result}) {
                         <DataName>Overview</DataName>
                         <DataValue>{result.overview}</DataValue>
                     </> : null }
-                    {loading && <ActivityIndicator style={{marginTop: 30}} color="white" size="small" />}
+                    {loading ? <ActivityIndicator style={{marginTop: 30}} color="white" size="small" /> : null}
                     {result.spoken_languages ? 
                         <>
                             <DataName>Language</DataName>
@@ -124,9 +126,29 @@ function Detail({loading, result}) {
                             <DataValue>{result.number_of_seasons} seasons / {result.number_of_episodes} episodes</DataValue>
                         </> : null
                     }
-                    
+                    {result.imdb_id ? 
+                        <>
+                            <DataName>Links</DataName>
+                            <Link text={"IMDB Page"} 
+                                icon={"imdb"} 
+                                onPress={()=> openBrowser(`https://www.imdb.com/title/${result.imdb_id}`)} />
+                        </> : null
+                    }
+                    {result.videos.results?.length > 0 ? 
+                        <>
+                            <DataName>Trailers</DataName>
+                            {result.videos.results.map(video => 
+                                <Link text={video.name}
+                                    key={video.id}
+                                    icon={"youtube-play"}
+                                    onPress={()=> openBrowser(`https://www.youtube.com/watch?v=${video.key}`)}
+                                />
+                            )}
+                            
+                        </> : null
+                    }
                 </Data>
-                {result.seasons && 
+                {result.seasons ? 
                     <HorizontalSlider title={"Seasons"}>
                         {result.seasons.map(season => 
                         <Horizontal
@@ -137,8 +159,7 @@ function Detail({loading, result}) {
                             title={season.name}
                         />  
                     )}
-                        
-                    </HorizontalSlider>
+                    </HorizontalSlider> : null
                 }
             </>
         </ScrollContainer>

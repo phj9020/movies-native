@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState }  from 'react';
 import { useEffect } from 'react';
 import { movieApi, tvApi } from '../../API';
 import DetailPresenter from './DetailPresenter';
+import * as WebBrowser from 'expo-web-browser';
 
 function DetailContainer({navigation, route: {params: {isTv, id, backgroundImage, title, poster, votes, overview}}}) {
     // param에서 온데이터를 state에 저장 
@@ -12,7 +13,10 @@ function DetailContainer({navigation, route: {params: {isTv, id, backgroundImage
             backgroundImage,
             poster,
             votes,
-            overview
+            overview,
+            videos: {
+                results: []
+            }
         }
     })
 
@@ -44,8 +48,13 @@ function DetailContainer({navigation, route: {params: {isTv, id, backgroundImage
         getData();
     }, [id])
 
+
+    const openBrowser = async(url) => {
+        await WebBrowser.openBrowserAsync(url);
+    }
+
     return (
-        <DetailPresenter {...detail} />
+        <DetailPresenter openBrowser={openBrowser} {...detail} />
     )
 }
 
