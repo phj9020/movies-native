@@ -30,7 +30,7 @@ export const movieApi = {
   popular: () => getAnything("/movie/popular"),
   upcoming: () => getAnything("/movie/upcoming", { region: "kr" }),
   search: (word) => getAnything("/search/movie", { query: word }),
-  movie: (id) => getAnything(`/movie/${id}`),
+  movie: (id) => getAnything(`/movie/${id}`, {append_to_response:"videos"}),
   discover: () => getAnything("/discover/movie"),
 };
 
@@ -40,7 +40,7 @@ export const tvApi = {
   topRated: () => getAnything("/tv/top_rated"),
   popular: () => getAnything("/tv/popular"),
   search: (word) => getAnything("/search/tv", { query: word }),
-  show: (id) => getAnything(`/tv/${id}`),
+  show: (id) => getAnything(`/tv/${id}`, {append_to_response:"videos"}),
 };
 
 export const apiImageFormat = (path, defaultPoster="https://images.unsplash.com/photo-1590179068383-b9c69aacebd3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80") =>

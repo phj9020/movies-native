@@ -21,6 +21,7 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
         <HorizontalSlider title={"Popular Shows"}>
           {popular.map((show) => (
             <Horizontal
+              isTv={true}
               id={show.id}
               key={show.id}
               poster={show.poster_path}
@@ -34,6 +35,7 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
         <SliderContainer>
             {thisWeek.map((show) => (
                 <Slide
+                isTv={true}
                 key={show.id}
                 id={show.id}
                 title={show.name}
@@ -47,6 +49,7 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
         <HorizontalSlider title={"Top Rated Shows"}>
           {topRated.map((show) => (
             <Horizontal
+              isTv={true}
               id={show.id}
               key={show.id}
               poster={show.poster_path}
@@ -60,6 +63,7 @@ function TVPresenter({refreshFn, loading, popular, topRated, today, thisWeek }) 
         <List title={"Airing Today"}>
           {today.map((show) => (
             <Vertical 
+                isTv={true}
                 id={show.id} 
                 key={show.id} 
                 poster={show.poster_path}

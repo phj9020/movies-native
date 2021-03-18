@@ -33,11 +33,11 @@ const Overview = styled.Text`
     font-size: 12px;
 `
 
-function Vertical({id, poster, title, releaseDate, overview, backgroundImage}) {
+function Vertical({isTv=false, id, poster, title, releaseDate, overview, backgroundImage}) {
     const navigation = useNavigation();
 
     const goToDetail = () => {
-        navigation.navigate("Detail", {id, poster, title, releaseDate, overview, backgroundImage});
+        navigation.navigate("Detail", {isTv, id, poster, title, releaseDate, overview, backgroundImage});
     }
 
     return (
@@ -56,7 +56,7 @@ function Vertical({id, poster, title, releaseDate, overview, backgroundImage}) {
 
 Vertical.propTypes = {
     id: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
+    poster: PropTypes.string,
     title: PropTypes.string.isRequired,
     releaseDate: PropTypes.string,
     overview: PropTypes.string,

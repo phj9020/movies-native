@@ -32,6 +32,7 @@ function SearchPresenter({keyword, onChange, onSubmit, movies, shows }) {
         <HorizontalSlider title={"TV Results"}>
           {shows.map((show) => (
             <Horizontal
+              isTv={true}
               key={show.id}
               id={show.id}
               poster={show.poster_path || show.backdrop_path}

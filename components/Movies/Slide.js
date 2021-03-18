@@ -61,11 +61,11 @@ const ButtonText= styled.Text`
     color: white;
 `
 
-function Slide({id, title, backgroundImage, votes, overview, poster}) {
+function Slide({isTv=false,id, title, backgroundImage, votes, overview, poster}) {
     const navigation = useNavigation();
 
     const goToDetail = () => {
-        navigation.navigate("Detail",{id, title, backgroundImage, votes, overview, poster} )
+        navigation.navigate("Detail",{isTv, id, title, backgroundImage, votes, overview, poster} )
     }
     return (
         <Container key={id}>
