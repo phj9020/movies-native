@@ -46,7 +46,7 @@ function Vertical({isTv=false, id, poster, title, releaseDate, overview, backgro
                 <Poster url={poster} />
                 <Data>
                         <Title>{trimText(title, 30)}</Title>
-                        {releaseDate ? <ReleaseDate>개봉일: {formatDate(releaseDate)}</ReleaseDate> : null}
+                        {isTv ? <ReleaseDate>방영일: {formatDate(releaseDate)}</ReleaseDate> : <ReleaseDate>개봉일: {formatDate(releaseDate)}</ReleaseDate>}
                         <Overview>{trimText(overview, 150)}</Overview>
                 </Data>
             </Container>
