@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text} from 'react-native';
-import { movieApi } from '../API';
+import { movieApi } from '../../API';
+import FavsPresenter from './FavsPresenter';
 
 function Favs() {
     const [discover, setDiscover]= useState({
@@ -8,7 +8,6 @@ function Favs() {
         movieError: null
     });
 
-    console.log(discover)
 
     const getData = async () => {
         const [discover, discoverError] = await movieApi.discover();
@@ -23,9 +22,7 @@ function Favs() {
     },[])
 
     return (
-        <View>
-            <Text>{discover.movie?.length}</Text> 
-        </View>
+        <FavsPresenter {...discover} />
     )
 }
 

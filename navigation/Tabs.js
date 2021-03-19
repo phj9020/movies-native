@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Movies from '../screens/Movies';
 import TV from '../screens/TV/';
 import Search from '../screens/Search';
-import Favs from '../screens/Favs';
+import Favs from '../screens/Favs/';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { Platform } from 'react-native';
@@ -39,10 +39,10 @@ function Tabs({ navigation, route}) {
             showLabel: false, 
             style:{backgroundColor:"black", borderTopColor: "black"}
             }}>
+            <Tab.Screen name="Discovery" component={Favs} />
             <Tab.Screen name="Movies" component={Movies}  />
             <Tab.Screen name="TV" component={TV} />
             <Tab.Screen name="Search" component={Search} />
-            <Tab.Screen name="Discovery" component={Favs} />
         </Tab.Navigator>
     )
 }
